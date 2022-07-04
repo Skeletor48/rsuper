@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/rsuper/static/css/main.e6c13ad2.css",
+    "main.js": "/rsuper/static/js/main.a73f1898.js",
+    "index.html": "/rsuper/index.html",
+    "main.e6c13ad2.css.map": "/rsuper/static/css/main.e6c13ad2.css.map",
+    "main.a73f1898.js.map": "/rsuper/static/js/main.a73f1898.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.a73f1898.js"
+  ]
+}
