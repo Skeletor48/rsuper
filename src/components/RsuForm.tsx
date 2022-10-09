@@ -1,4 +1,3 @@
-import React, {useState} from "react";
 import {createStyles, makeStyles, Typography,Paper,Button} from "@material-ui/core";
 
 import RsuInputField from "./RsuInputField";
@@ -7,12 +6,13 @@ const useStyles = makeStyles(() => createStyles({
     form : {
         display : "flex",
         flexDirection : "column",
+        alignSelf: "auto"
     },
     container : {
         backgroundColor : "#ffffff",
         position : "absolute",
-        top : "50%",
-        left : "50%",
+        top : "25%",
+        left : "80%",
         transform : "translate(-50%,-50%)",
         padding : 30,
         textAlign : "center"
@@ -25,38 +25,45 @@ const useStyles = makeStyles(() => createStyles({
     }
 }))
 
-type Values = {
-    name : string,
-    ssnumber : number | null,
-    amount : number,
+
+const labelMap= new Map<string, string>([
+  ['name', 'Name'],
+  ['taxNumber', 'Tax Number'],
+  ['amount', 'RSU Amount',],
+  ['description', 'Description'],
+  ['accountNumber', 'Account Number'],
+  ['transactionAmount','Transaction Amount']
+]);
+
+type RsuFormProps = {
+    formTitle: string,
+    fieldNames: string[],
+    buttonName?: string,
+    buttonHandler: (event: React.FormEvent<HTMLFormElement>) => void,
+    clickHandler?: (event: React.MouseEvent<HTMLInputElement>) => void,
+    changeHandler?: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    isReadOnly?: boolean,
+    values: Map<string, string>
 }
 
-const RsuForm = () => {
-
+const RsuForm = (props: RsuFormProps) => {
     const classes = useStyles();
-    const [values,setValues] = useState<Values>({
-        name : "",
-        ssnumber : null,
-        amount : 0,
-    });
-
-    const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-        setValues({...values,[event.target.name] : event.target.value});
-    }
-
-    const handleSubmit = (event : React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log(values)
-    }
 
     return (
-        <Paper className={classes.container}>
-            <Typography variant={"h4"} className={classes.title}>Transaction Data </Typography>
-            <form onSubmit={(e) => handleSubmit(e)} className={classes.form}>
-                <RsuInputField changeHandler={handleChange} label={"Name"} name={"name"}/>
-                <RsuInputField changeHandler={handleChange} label={"Social Security Number"} name={"ssnumber"}/>
-                <RsuInputField changeHandler={handleChange} label={"RSU Amount"} name={"amount"}/>
-                <Button type={"submit"} variant={"contained"} className={classes.button}>Submit</Button>
+        <Paper >
+            <Typography variant={"h4"} >{props.formTitle}</Typography>
+            <form onSubmit={(e) => props.buttonHandler(e)} >
+            {props.fieldNames.map(fieldName => (
+              <RsuInputField
+              key={fieldName}
+              changeHandler={props.changeHandler}
+              clickHandler={props.clickHandler}
+              label={labelMap.get(fieldName)}
+              name={fieldName}
+              value={props.values.get(fieldName)}
+              readOnly={props.isReadOnly}/>
+   ))}
+                <Button type={"submit"} variant={"contained"} className={classes.button}>{props.buttonName}</Button>
             </form>
         </Paper>
     );
