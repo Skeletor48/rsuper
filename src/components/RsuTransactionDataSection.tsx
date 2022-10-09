@@ -13,20 +13,22 @@ type DetailValues = {
    name : string,
    taxNumber: string,
    transactionAmount : string,
+   isCalculated: boolean,
 }
 
 function RsuTransactionDataSection() {
 
   const [inputValues,setInputValues] = useState<InputValues>({
-      name : "",
-      taxNumber : '0',
-      amount : '0',
+      name : '',
+      taxNumber : '',
+      amount : '',
   });
 
   const [detailValues,setDetailValues] = useState<DetailValues>({
     name : '',
     taxNumber: '',
-    transactionAmount : '0',
+    transactionAmount : '',
+    isCalculated: false,
   });
 
   const handleSub = (event : React.FormEvent<HTMLFormElement>) => {
@@ -35,17 +37,8 @@ function RsuTransactionDataSection() {
         name : inputValues.name,
         taxNumber: inputValues.taxNumber,
         transactionAmount : inputValues.amount,
+        isCalculated: true,
       });
-  }
-
-  const handleCopyAll = (event : React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // debugger;
-    // const dataToSave =['description', 'accountNumber', 'transactionAmount'].reduce((savedDetail,detail)=>{
-    //   return `${savedDetail} ${event.target.elements[detail].value}`;
-    // },'')
-    // navigator.clipboard.writeText(dataToSave);
-    // console.log('clicked',event);
   }
 
   const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +49,7 @@ function RsuTransactionDataSection() {
   return (
     <div >
         <div><RsuTransactionInputBox values={inputValues}  buttonHandler={handleSub} changeHandler={handleChange} /></div>
-        <div><RsuTransactionDetailsBox values={detailValues} buttonHandler={handleCopyAll} changeHandler={handleChange} /></div>
+        <div><RsuTransactionDetailsBox values={detailValues} /></div>
     </div>
   );
 }

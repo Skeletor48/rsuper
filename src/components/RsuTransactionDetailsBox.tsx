@@ -9,41 +9,63 @@ interface NavDetail {
   FORMULA: (amount: number) => number,
 }
 
+// type FormFields = {
+//    description : string,
+//    accountNumber: string,
+//    transactionAmount : string,
+// }
+
 type DetailValues = {
    name : string,
    taxNumber: string,
    transactionAmount : string,
+   isCalculated: boolean,
 }
 
 type RsuTransactionDetailsBoxProps = {
-    buttonHandler: (event: React.FormEvent<HTMLFormElement>) => void,
+    buttonHandler?: (event: React.FormEvent<HTMLFormElement>) => void,
     changeHandler?: (event: React.ChangeEvent<HTMLInputElement>) => void,
     values: DetailValues
 }
 
 const RsuTransactionDetailsBox = (props: RsuTransactionDetailsBoxProps) => {
-  console.log(props)
 
   const navDetails = Object.values(CONSTANTS.NAV_DETAILS);
 
   const handleCopy = (event : React.MouseEvent<HTMLInputElement>) => {
     navigator.clipboard.writeText((event.target as HTMLInputElement).value);
-    console.log('clicked');
   }
 
   const getTransactionAmount = (navDetail : NavDetail) => {
-    const amount = Number(props.values['transactionAmount'].replace(/\s/g,''))
+    const amount = Number(props.values['transactionAmount'].replace(/\s/g,''));
     return String(navDetail.FORMULA(amount));
+  }
+
+  const handleCopyAll = (event : React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const dataToSave =['description', 'accountNumber', 'transactionAmount'].reduce((savedDetail: string, detail: string)=>{
+      return `${savedDetail}
+${(event.currentTarget.elements.namedItem(detail) as HTMLInputElement).value}`;
+    },'')
+    navigator.clipboard.writeText(dataToSave);
   }
 
   const getValues = (navDetailType : number) => {
     const navDetail = navDetails.filter(detail => detail.TYPE === navDetailType);
-    debugger;
-    const valuesMap= new Map<string, string>([
-      ['description', `${props.values['name']}  ${props.values['taxNumber']} ${navDetail[0].DESCRIPTION_ENDING}`],
-      ['accountNumber', `${navDetail[0].ACCOUNT_NUMBER}`],
-      ['transactionAmount', getTransactionAmount(navDetail[0])]
+    let valuesMap= new Map<string, string>([
+      ['description', ''],
+      ['accountNumber', ''],
+      ['transactionAmount', '']
     ]);
+
+    if (props.values['isCalculated']) {
+      valuesMap= new Map<string, string>([
+        ['description', `${props.values['name']}  ${props.values['taxNumber']} ${navDetail[0].DESCRIPTION_ENDING}`],
+        ['accountNumber', `${navDetail[0].ACCOUNT_NUMBER}`],
+        ['transactionAmount', getTransactionAmount(navDetail[0])]
+      ]);
+    }
+
     return valuesMap;
 
   }
@@ -58,7 +80,7 @@ const RsuTransactionDetailsBox = (props: RsuTransactionDetailsBoxProps) => {
             formTitle={item.TITLE}
             fieldNames={['description','accountNumber','transactionAmount']}
             buttonName= {'Copy All'}
-            buttonHandler={props.buttonHandler}
+            buttonHandler={(e:React.FormEvent<HTMLFormElement>)=>handleCopyAll(e)}
             changeHandler={props.changeHandler}
             clickHandler={handleCopy}
             values={getValues(item.TYPE)}
