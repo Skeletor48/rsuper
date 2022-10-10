@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
 import RsuTransactionDataSection from "./components/RsuTransactionDataSection"
-import {createStyles, makeStyles, Typography,Paper,Button} from "@material-ui/core";
+import BankList from "./components/BankList"
 
 function App() {
   return (
     <div>
         <div><RsuTransactionDataSection/></div>
+        <div><BankList/></div>
     </div>
   );
 }
