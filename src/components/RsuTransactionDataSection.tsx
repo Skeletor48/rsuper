@@ -1,7 +1,20 @@
 import React, {useState} from 'react';
+import {createStyles, makeStyles,} from "@material-ui/core";
 import RsuTransactionDetailsBox from "./RsuTransactionDetailsBox";
 import RsuTransactionInputBox from "./RsuTransactionInputBox";
-// import {createStyles, makeStyles, Typography,Paper,Button} from "@material-ui/core";
+import BankList from "./BankList"
+
+const useStyles = makeStyles(() => createStyles({
+    detailContainer : {
+      display : "flex",
+      flexDirection : "row",
+      justifyContent: 'center',
+    },
+}))
+
+type RsuTransactionDataSectionProps = {
+    countryCode : string | any,
+}
 
 type InputValues = {
     name : string,
@@ -16,7 +29,9 @@ type DetailValues = {
    isCalculated: boolean,
 }
 
-function RsuTransactionDataSection() {
+function RsuTransactionDataSection(props:RsuTransactionDataSectionProps) {
+
+  const classes = useStyles();
 
   const [inputValues,setInputValues] = useState<InputValues>({
       name : '',
@@ -47,9 +62,14 @@ function RsuTransactionDataSection() {
   }
 
   return (
-    <div >
-        <div><RsuTransactionInputBox values={inputValues}  buttonHandler={handleSub} changeHandler={handleChange} /></div>
-        <div><RsuTransactionDetailsBox values={detailValues} /></div>
+    <div className={classes.detailContainer}>
+      <div>
+        <RsuTransactionInputBox values={inputValues}  buttonHandler={handleSub} changeHandler={handleChange} />
+        <BankList countryCode={props.countryCode} />
+      </div>
+      <div>
+        <RsuTransactionDetailsBox values={detailValues} />
+      </div>
     </div>
   );
 }

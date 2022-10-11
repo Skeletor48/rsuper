@@ -1,19 +1,13 @@
 import RsuForm from "./RsuForm";
 import * as CONSTANTS from "../constants";
 
-interface NavDetail {
+interface TaxDetail {
   TYPE: number,
   TITLE: string,
   ACCOUNT_NUMBER: string,
   DESCRIPTION_ENDING: string,
   FORMULA: (amount: number) => number,
 }
-
-// type FormFields = {
-//    description : string,
-//    accountNumber: string,
-//    transactionAmount : string,
-// }
 
 type DetailValues = {
    name : string,
@@ -30,15 +24,15 @@ type RsuTransactionDetailsBoxProps = {
 
 const RsuTransactionDetailsBox = (props: RsuTransactionDetailsBoxProps) => {
 
-  const navDetails = Object.values(CONSTANTS.NAV_DETAILS);
+  const taxDetails = Object.values(CONSTANTS.TAX_DETAILS.HUN.COUNTRY_SPECS);
 
   const handleCopy = (event : React.MouseEvent<HTMLInputElement>) => {
     navigator.clipboard.writeText((event.target as HTMLInputElement).value);
   }
 
-  const getTransactionAmount = (navDetail : NavDetail) => {
+  const getTransactionAmount = (taxDetail : TaxDetail) => {
     const amount = Number(props.values['transactionAmount'].replace(/\s/g,''));
-    return String(navDetail.FORMULA(amount));
+    return String(taxDetail.FORMULA(amount));
   }
 
   const handleCopyAll = (event : React.FormEvent<HTMLFormElement>) => {
@@ -50,8 +44,8 @@ ${(event.currentTarget.elements.namedItem(detail) as HTMLInputElement).value}`;
     navigator.clipboard.writeText(dataToSave);
   }
 
-  const getValues = (navDetailType : number) => {
-    const navDetail = navDetails.filter(detail => detail.TYPE === navDetailType);
+  const getValues = (taxDetailType : number) => {
+    const taxDetail = taxDetails.filter(detail => detail.TYPE === taxDetailType);
     let valuesMap= new Map<string, string>([
       ['description', ''],
       ['accountNumber', ''],
@@ -60,9 +54,9 @@ ${(event.currentTarget.elements.namedItem(detail) as HTMLInputElement).value}`;
 
     if (props.values['isCalculated']) {
       valuesMap= new Map<string, string>([
-        ['description', `${props.values['name']}  ${props.values['taxNumber']} ${navDetail[0].DESCRIPTION_ENDING}`],
-        ['accountNumber', `${navDetail[0].ACCOUNT_NUMBER}`],
-        ['transactionAmount', getTransactionAmount(navDetail[0])]
+        ['description', `${props.values['name']}  ${props.values['taxNumber']} ${taxDetail[0].DESCRIPTION_ENDING}`],
+        ['accountNumber', `${taxDetail[0].ACCOUNT_NUMBER}`],
+        ['transactionAmount', getTransactionAmount(taxDetail[0])]
       ]);
     }
 
@@ -74,7 +68,7 @@ ${(event.currentTarget.elements.namedItem(detail) as HTMLInputElement).value}`;
     return (
       <div>
           <div>
-          { navDetails.map(item=>(
+          { taxDetails.map(item=>(
             <RsuForm
             key={item.TITLE}
             formTitle={item.TITLE}

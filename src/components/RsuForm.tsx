@@ -9,19 +9,27 @@ const useStyles = makeStyles(() => createStyles({
         alignSelf: "auto"
     },
     container : {
-        backgroundColor : "#ffffff",
-        position : "absolute",
-        top : "25%",
-        left : "80%",
-        transform : "translate(-50%,-50%)",
-        padding : 30,
-        textAlign : "center"
+        textAlign : "center",
+        width: 400,
+        height: 400,
+        margin: '20px',
+        padding: '30px',
+        background: 'rgba(172, 197, 208, 0.2)',
+        borderRadius: '16px',
+        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+        backdropFilter: 'blur(5px)',
+        border: '1px solid rgba(172, 197, 208, 0.3)',
     },
     title : {
         margin:"0px 0 20px 0"
     },
     button : {
-        margin:"20px 0"
+        margin:"20px 0",
+        background: 'rgba(18, 32, 224, 0.39)',
+        borderRadius: '16px',
+        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+        backdropFilter: 'blur(5px)',
+        border: '1px solid rgba(18, 32, 224, 0.63)',
     }
 }))
 
@@ -50,9 +58,9 @@ const RsuForm = (props: RsuFormProps) => {
     const classes = useStyles();
 
     return (
-        <Paper >
-            <Typography variant={"h4"} >{props.formTitle}</Typography>
-            <form onSubmit={(e) => props.buttonHandler(e)} >
+        <Paper className={classes.container} >
+            <Typography className={classes.title} variant={"h4"} >{props.formTitle}</Typography>
+            <form className={classes.form} onSubmit={(e) => props.buttonHandler(e)} >
             {props.fieldNames.map(fieldName => (
               <RsuInputField
               key={fieldName}
