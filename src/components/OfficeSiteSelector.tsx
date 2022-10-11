@@ -8,12 +8,12 @@ const dropdownStyle = {
   marginRight: '20px',
 }
 
-type SiteSelectorProps = {
+type OfficeSiteSelectorProps = {
    countryCode : string,
    handleSelect: (event: SelectChangeEvent) => void,
 }
 
-function SiteSelector(props: SiteSelectorProps) {
+function OfficeSiteSelector(props: OfficeSiteSelectorProps) {
   return (
     <>
         <Select
@@ -25,11 +25,12 @@ function SiteSelector(props: SiteSelectorProps) {
           displayEmpty
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem  value={'HUN'}><Flag code={ 'HUN' } height="16" /></MenuItem>
+          <MenuItem value={'HUN'}><Flag code={ 'HUN' } height="16" /></MenuItem>
           <MenuItem value={'GBR'}><Flag code={ 'GBR' } height="16" /></MenuItem>
+          <MenuItem value={'ESP'}><Flag code={ 'ESP' } height="16" /></MenuItem>
         </Select>
     </>
   );
 }
 
-export default SiteSelector;
+export default OfficeSiteSelector;

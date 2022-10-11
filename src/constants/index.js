@@ -132,6 +132,37 @@ export const TAX_DETAILS = {
     ],
   },
 
+  ESP: {
+    COUNTRY_SPECS: {
+      MARIACHI_TAX: {
+        TYPE: 1,
+        TITLE: 'Me gusta Tax',
+        ACCOUNT_NUMBER: 'UK14 3333 esp',
+        DESCRIPTION_ENDING: 'senior caballo',
+        FORMULA: (amount) => amount * 0.36 * 0.25,
+      },
+
+    },
+    BANK_DETAILS: [
+      {
+        img: 'https://placedog.net/500',
+        title: 'Banko Del Sol',
+        link: 'https://spain.com/index/',
+      },
+      {
+        img: 'https://placedog.net/545',
+        title: 'Cerveza Bank',
+        link: 'https://spain.com/index/',
+      },
+      {
+        img: 'https://placedog.net/566',
+        title: 'Barcelona Bank',
+        link: 'https://spain.com/index/',
+      },
+
+    ],
+  },
+
 
 
 

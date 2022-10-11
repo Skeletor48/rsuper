@@ -1,7 +1,7 @@
 import "./styles/TopBarStyle.css";
 import { SelectChangeEvent } from '@mui/material/Select';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
-import LanguageSelector from './LanguageSelector'
+import OfficeSiteSelector from './OfficeSiteSelector'
 
 type TopBarProps = {
    countryCode : string,
@@ -25,7 +25,7 @@ function TopBar(props: TopBarProps) {
             RSUper Tax Helper &nbsp; <RequestQuoteIcon/>
           </div>
           <button className="clear-button" onClick={resetInput}>Reset</button>
-          <LanguageSelector
+          <OfficeSiteSelector
             countryCode={props.countryCode}
             handleSelect={props.handleSelect}
           />
