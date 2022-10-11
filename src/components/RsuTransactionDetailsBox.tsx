@@ -19,12 +19,13 @@ type DetailValues = {
 type RsuTransactionDetailsBoxProps = {
     buttonHandler?: (event: React.FormEvent<HTMLFormElement>) => void,
     changeHandler?: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    countryCode: string,
     values: DetailValues
 }
 
 const RsuTransactionDetailsBox = (props: RsuTransactionDetailsBoxProps) => {
-
-  const taxDetails = Object.values(CONSTANTS.TAX_DETAILS.HUN.COUNTRY_SPECS);
+console.log(props.countryCode)
+  const taxDetails = Object.values(CONSTANTS.TAX_DETAILS[props.countryCode as keyof typeof CONSTANTS['TAX_DETAILS']].COUNTRY_SPECS);
 
   const handleCopy = (event : React.MouseEvent<HTMLInputElement>) => {
     navigator.clipboard.writeText((event.target as HTMLInputElement).value);
@@ -67,10 +68,10 @@ ${(event.currentTarget.elements.namedItem(detail) as HTMLInputElement).value}`;
 
     return (
       <div>
-          { taxDetails.map(item=>(
+          { taxDetails.map((item, i)=>(
             <>
               <RsuForm
-              key={item.TITLE}
+              key={`${item.TITLE}-${i}-${item.TYPE}`}
               formTitle={item.TITLE}
               fieldNames={['description','accountNumber','transactionAmount']}
               buttonName= {'Copy All'}

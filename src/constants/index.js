@@ -63,7 +63,7 @@ export const TAX_DETAILS = {
   },
 
 
-  UK: {
+  GBR: {
     COUNTRY_SPECS: {
       PRINCESS_DIANA_TAX: {
         TYPE: 1,

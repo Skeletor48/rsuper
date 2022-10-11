@@ -29,7 +29,7 @@ const BankList = (props: BankListProps) =>  {
       border: '1px solid rgba(172, 197, 208, 0.3)',
     }}
       gap={8} rowHeight={'auto'}>
-      {CONSTANTS.TAX_DETAILS.HUN.BANK_DETAILS.map((item) => (
+      {CONSTANTS.TAX_DETAILS[props.countryCode as keyof typeof CONSTANTS['TAX_DETAILS']].BANK_DETAILS.map((item) => (
         <ImageListItem
         sx={{
           background: 'rgba(163, 227, 241, 0.16)',

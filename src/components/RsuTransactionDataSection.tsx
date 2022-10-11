@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => createStyles({
 }))
 
 type RsuTransactionDataSectionProps = {
-    countryCode : string | any,
+    countryCode : string,
 }
 
 type InputValues = {
@@ -40,7 +40,6 @@ type DetailValues = {
 }
 
 function RsuTransactionDataSection(props:RsuTransactionDataSectionProps) {
-
   const classes = useStyles();
 
   const [inputValues,setInputValues] = useState<InputValues>({
@@ -68,7 +67,6 @@ function RsuTransactionDataSection(props:RsuTransactionDataSectionProps) {
 
   const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
       setInputValues({...inputValues,[event.target.name] : event.target.value});
-      console.log('change')
   }
 
   return (
@@ -79,7 +77,7 @@ function RsuTransactionDataSection(props:RsuTransactionDataSectionProps) {
         <BankList countryCode={props.countryCode} />
       </div>
       <div className={classes.detailBox}>
-        <RsuTransactionDetailsBox values={detailValues} />
+        <RsuTransactionDetailsBox values={detailValues} countryCode={props.countryCode} />
       </div>
     </div>
   );
