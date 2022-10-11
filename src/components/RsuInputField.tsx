@@ -13,6 +13,7 @@ type RsuInputFieldProps = {
 const RsuInputField = (props: RsuInputFieldProps) => {
     return (
         <TextField
+            autoComplete={"off"}
             label={props.label}
             name={props.name}
             value={props.value || ''}

@@ -5,11 +5,21 @@ import RsuTransactionInputBox from "./RsuTransactionInputBox";
 import BankList from "./BankList"
 
 const useStyles = makeStyles(() => createStyles({
-    detailContainer : {
-      display : "flex",
-      flexDirection : "row",
+    detailContainer: {
+      marginTop: 40,
+      display: 'flex',
       justifyContent: 'center',
+      flexWrap: 'wrap'
     },
+    inputBox: {
+      display: 'flex',
+      flexDirection: 'column',
+
+    },
+    detailBox: {
+    }
+
+
 }))
 
 type RsuTransactionDataSectionProps = {
@@ -63,11 +73,12 @@ function RsuTransactionDataSection(props:RsuTransactionDataSectionProps) {
 
   return (
     <div className={classes.detailContainer}>
-      <div>
+      <div className={classes.inputBox}>
         <RsuTransactionInputBox values={inputValues}  buttonHandler={handleSub} changeHandler={handleChange} />
+        <br/>
         <BankList countryCode={props.countryCode} />
       </div>
-      <div>
+      <div className={classes.detailBox}>
         <RsuTransactionDetailsBox values={detailValues} />
       </div>
     </div>

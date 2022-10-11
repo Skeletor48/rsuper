@@ -67,21 +67,21 @@ ${(event.currentTarget.elements.namedItem(detail) as HTMLInputElement).value}`;
 
     return (
       <div>
-          <div>
           { taxDetails.map(item=>(
-            <RsuForm
-            key={item.TITLE}
-            formTitle={item.TITLE}
-            fieldNames={['description','accountNumber','transactionAmount']}
-            buttonName= {'Copy All'}
-            buttonHandler={(e:React.FormEvent<HTMLFormElement>)=>handleCopyAll(e)}
-            changeHandler={props.changeHandler}
-            clickHandler={handleCopy}
-            values={getValues(item.TYPE)}
-            isReadOnly={true}/>
+            <>
+              <RsuForm
+              key={item.TITLE}
+              formTitle={item.TITLE}
+              fieldNames={['description','accountNumber','transactionAmount']}
+              buttonName= {'Copy All'}
+              buttonHandler={(e:React.FormEvent<HTMLFormElement>)=>handleCopyAll(e)}
+              changeHandler={props.changeHandler}
+              clickHandler={handleCopy}
+              values={getValues(item.TYPE)}
+              isReadOnly={true}/>
+              <br/>
+            </>
           ))}
-
-          </div>
       </div>
     );
 }

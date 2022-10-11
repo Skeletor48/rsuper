@@ -22,8 +22,6 @@ function RsuTransactionInputBox(props: RsuTransactionInputBoxProps) {
   ]);
 
   return (
-    <div>
-        <div>
           <RsuForm
           formTitle={'Transaction Data'}
           fieldNames={['name','taxNumber','amount']}
@@ -33,8 +31,6 @@ function RsuTransactionInputBox(props: RsuTransactionInputBoxProps) {
           isReadOnly={false}
           values={valuesMap}
           />
-        </div>
-    </div>
   );
 }
 

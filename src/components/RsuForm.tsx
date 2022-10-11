@@ -10,10 +10,8 @@ const useStyles = makeStyles(() => createStyles({
     },
     container : {
         textAlign : "center",
-        width: 400,
-        height: 400,
         margin: '20px',
-        padding: '30px',
+        padding: '20px',
         background: 'rgba(172, 197, 208, 0.2)',
         borderRadius: '16px',
         boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
