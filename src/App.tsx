@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { styled } from '@mui/material/styles';
 import { SelectChangeEvent } from '@mui/material/Select';
-import RsuTransactionDataSection from "./components/RsuTransactionDataSection"
+import RsuTransactionDataSection from "./components/RsuTransactionDataSection";
+import Footer from "./components/Footer";
 
 import TopBar from "./components/TopBar";
 
@@ -39,6 +40,7 @@ function App() {
   };
 
   return (
+    <>
     <Root>
         <AppBody>
           <TopBar
@@ -50,6 +52,8 @@ function App() {
           />
         </AppBody>
     </Root>
+    <Footer />
+    </>
   );
 }
 
