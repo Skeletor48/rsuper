@@ -80,7 +80,7 @@ export const TAX_DETAILS = {
         FORMULA: (amount) => amount * 0.50 * 0.12,
       },
       MEGHAN_MARKLE_TAX: {
-        TYPE: 2,
+        TYPE: 3,
         TITLE: 'Meghan Markle Tax',
         ACCOUNT_NUMBER: 'UK14 2222 THIS IS A FAKE ACC OFC',
         DESCRIPTION_ENDING: 'God Bless America',
