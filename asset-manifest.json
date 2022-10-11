@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/rsuper/static/css/main.02064071.css",
-    "main.js": "/rsuper/static/js/main.ff8aceed.js",
+    "main.js": "/rsuper/static/js/main.ff5f0be5.js",
     "index.html": "/rsuper/index.html",
     "main.02064071.css.map": "/rsuper/static/css/main.02064071.css.map",
-    "main.ff8aceed.js.map": "/rsuper/static/js/main.ff8aceed.js.map"
+    "main.ff5f0be5.js.map": "/rsuper/static/js/main.ff5f0be5.js.map"
   },
   "entrypoints": [
     "static/css/main.02064071.css",
-    "static/js/main.ff8aceed.js"
+    "static/js/main.ff5f0be5.js"
   ]
 }
