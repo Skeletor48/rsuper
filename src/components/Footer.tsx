@@ -1,4 +1,5 @@
 import React from "react";
+import Tooltip from '@mui/material/Tooltip';
 import "./styles/Footer.css";
 
 function Footer() {
@@ -6,14 +7,24 @@ function Footer() {
         <div className='footer-container'>
             <section className='social-media'>
                 <div className='social-media-wrap'>
+                  <Tooltip title='GitHub repo of the project'>
                     <div className='footer-logo'>
-                        SKLTR48  &nbsp;
-                        <i className='fas fa-skull' />
+                      <a
+                          className='social-icon-link facebook'
+                          href='https://github.com/Skeletor48/rsuper/tree/master'
+                          target='_blank'
+                          style={{ textDecoration: 'none'}}
+                          rel="noopener noreferrer"
+                          aria-label='GitHub Repo'>
+                            SKLTR48  &nbsp;
+                            <i className='fas fa-skull' />
+                      </a>
                     </div>
+                    </Tooltip>
                     <small className='website-rights'>Skeletor48 © 2022</small>
                     <div className='social-icons'>
                         <a
-                            className='social-icon-link facebook'
+                            className='social-icon-link'
                             href='https://m.me/mihaly.banfi.5'
                             target='_blank'
                             rel="noopener noreferrer"

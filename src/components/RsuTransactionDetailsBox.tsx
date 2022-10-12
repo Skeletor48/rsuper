@@ -24,7 +24,6 @@ type RsuTransactionDetailsBoxProps = {
 }
 
 const RsuTransactionDetailsBox = (props: RsuTransactionDetailsBoxProps) => {
-console.log(props.countryCode)
   const taxDetails = Object.values(CONSTANTS.TAX_DETAILS[props.countryCode as keyof typeof CONSTANTS['TAX_DETAILS']].COUNTRY_SPECS);
 
   const handleCopy = (event : React.MouseEvent<HTMLInputElement>) => {
